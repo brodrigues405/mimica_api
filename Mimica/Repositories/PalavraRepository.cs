@@ -16,24 +16,24 @@ namespace Mimica.Repositories {
             _context = context;
         }
 
-        public PaginationList<Palavra> ObterPalavras(DateTime? data, int? pagNumero, int? pagQtdRegistro) {
+        public PaginationList<Palavra> ObterPalavras(ParamObterPalavras query) {
             
 
             var lista = new PaginationList<Palavra>();
             var item = _context.palavras.AsNoTracking().AsQueryable();
-            if (data.HasValue) {
-                item = item.Where(a => a.Criado > data.Value || a.Atualizado > data.Value);
+            if (query.Data.HasValue) {
+                item = item.Where(a => a.Criado > query.Data.Value || a.Atualizado > query.Data.Value);
             }
 
-            if (pagNumero.HasValue) {
+            if (query.PagNumero.HasValue) {
                 var qtdRegistros = item.Count();
-                item = item.Skip((pagNumero.Value - 1) * pagQtdRegistro.Value).Take(pagQtdRegistro.Value);
+                item = item.Skip((query.PagNumero.Value - 1) * query.PagQtdRegistro.Value).Take(query.PagQtdRegistro.Value);
                   
                 var paginacao = new Paginacao();
-                paginacao.numeroPagina = pagNumero.Value;
-                paginacao.RegistroPoPagina = pagQtdRegistro.Value;
+                paginacao.numeroPagina = query.PagNumero.Value;
+                paginacao.RegistroPoPagina = query.PagQtdRegistro.Value;
                 paginacao.TotalRegistros = qtdRegistros;
-                paginacao.TotalPaginas = (int)Math.Ceiling((double)qtdRegistros / pagQtdRegistro.Value);
+                paginacao.TotalPaginas = (int)Math.Ceiling((double)qtdRegistros / query.PagQtdRegistro.Value);
                 
             lista.paginacao = paginacao;
             }

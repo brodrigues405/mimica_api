@@ -24,13 +24,13 @@ namespace Mimica.Controllers {
 
         [Route("")]
         [HttpGet]
-        public IActionResult ObterTodas(DateTime? data, int? pagNumero, int? pagQtdRegistro) {
+        public IActionResult ObterTodas( [FromQuery] ParamObterPalavras query) {
 
-            var item = _repositoty.ObterPalavras(data, pagNumero, pagQtdRegistro);
+            var item = _repositoty.ObterPalavras(query);
 
-            if (pagNumero != null) {
+            if (query.PagNumero != null) {
 
-                if (pagNumero > item.paginacao.TotalPaginas) {
+                if (query.PagNumero > item.paginacao.TotalPaginas) {
                     return NotFound();
                 }
 

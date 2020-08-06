@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Mimica.Repositories.Contracts {
     public interface IPalavraRepository {
 
-        PaginationList<Palavra> ObterPalavras(DateTime? data, int? pagNumero, int? pagQtdRegistro);
+        PaginationList<Palavra> ObterPalavras(ParamObterPalavras query);
         Palavra Obter(int id);
 
         void Cadastrar(Palavra palavra);
