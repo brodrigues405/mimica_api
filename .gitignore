@@ -536,3 +536,5 @@ Mimica/obj/Debug/netcoreapp2.2/Mimica.csproj.CoreCompileInputs.cache
 Mimica/obj/Debug/netcoreapp2.2/Mimica.csprojAssemblyReference.cache
 Mimica/obj/Debug/netcoreapp2.2/Mimica.dll
 Mimica/obj/Debug/netcoreapp2.2/Mimica.pdb
+.vscode/tasks.json
+.vscode/launch.json

@@ -13,18 +13,23 @@ using Mimica.Models;
 using Mimica.Repositories;
 using Mimica.Repositories.Contracts;
 
-namespace Mimica {
-    public class Startup {
+namespace Mimica
+{
+    public class Startup
+    {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection services)
+        {
 
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.AddProfile(new DTOMapperProfile());
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddDbContext<MimicaContext>(opt => {
+            services.AddDbContext<MimicaContext>(opt =>
+            {
                 opt.UseSqlite("Data Source=Database\\Mimic.db");
             });
             services.AddCors(options =>
@@ -33,15 +38,19 @@ namespace Mimica {
                     builder => builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader());
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("X-Pagination")
+                    );
             });
             services.AddMvc();
             services.AddScoped<IPalavraRepository, PalavraRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
-            if (env.IsDevelopment()) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("CorsPolicy");
