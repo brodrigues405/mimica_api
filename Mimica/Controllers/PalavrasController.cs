@@ -22,22 +22,41 @@ namespace Mimica.Controllers {
             _mapper = mapper;
         }
 
-        [Route("")]
-        [HttpGet]
-        public IActionResult ObterTodas(DateTime? data, int? pagNumero, int? pagQtdRegistro) {
+        //[Route("")]
+        [HttpGet("", Name = "ObterTodas")]
+        public IActionResult ObterTodas([FromQuery] ParamObterPalavras query) {
 
-            var item = _repositoty.ObterPalavras(data, pagNumero, pagQtdRegistro);
+            var item = _repositoty.ObterPalavras(query);
 
-            if (pagNumero != null) {
+            if (item.Results.Count() == 0) {
+                return NotFound();
+            }
 
-                if (pagNumero > item.paginacao.TotalPaginas) {
-                    return NotFound();
+            var lista = _mapper.Map<PaginationList<Palavra>, PaginationList<PalavraDTO>>(item);
+            foreach (var palavra in lista.Results) {
+                palavra.links = new List<LinkDTO>();
+                palavra.links.Add(new LinkDTO("self", Url.Link("ObterPalavra", new { id = palavra.Id }), "GET"));
+            }
+
+            lista.links.Add(new LinkDTO("self", Url.Link("ObterTodas", query), "GET"));
+
+            if (item.paginacao != null) {
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(item.paginacao));
+
+                if (query.PagNumero + 1 <= item.paginacao.TotalPaginas) {
+                    var queryString = new ParamObterPalavras() { PagNumero = query.PagNumero + 1, PagQtdRegistro = query.PagQtdRegistro, Data = query.Data };
+                    lista.links.Add(new LinkDTO("next", Url.Link("ObterTodas", queryString), "GET"));
                 }
 
+                if (query.PagNumero - 1 > 0 ) {
+                    var queryString = new ParamObterPalavras() { PagNumero = query.PagNumero - 1, PagQtdRegistro = query.PagQtdRegistro, Data = query.Data };
+                    lista.links.Add(new LinkDTO("prev", Url.Link("ObterTodas", queryString), "GET"));
+                }
+
+
             }
-            
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(item.paginacao));
-            return Ok(item.ToList());
+
+            return Ok(lista);
         }
 
 
@@ -61,8 +80,6 @@ namespace Mimica.Controllers {
                     pDTO.links.Add(new LinkDTO("delete", Url.Link("removerPalavra", new { id = pDTO.Id }), "DELETE"));
 
                     return Ok(pDTO);
-
-
 
                 }
             } catch (Exception ex) {
