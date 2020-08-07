@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andre\\Desktop\\ASP.NET_CORE_API\\Mimica\\Mimica\\Mimica.csproj": {}
+    "C:\\apicompaginacao\\mimica_api\\Mimica\\Mimica.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andre\\Desktop\\ASP.NET_CORE_API\\Mimica\\Mimica\\Mimica.csproj": {
+    "C:\\apicompaginacao\\mimica_api\\Mimica\\Mimica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andre\\Desktop\\ASP.NET_CORE_API\\Mimica\\Mimica\\Mimica.csproj",
+        "projectUniqueName": "C:\\apicompaginacao\\mimica_api\\Mimica\\Mimica.csproj",
         "projectName": "Mimica",
-        "projectPath": "C:\\Users\\Andre\\Desktop\\ASP.NET_CORE_API\\Mimica\\Mimica\\Mimica.csproj",
-        "packagesPath": "C:\\Users\\Andre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andre\\Desktop\\ASP.NET_CORE_API\\Mimica\\Mimica\\obj\\",
+        "projectPath": "C:\\apicompaginacao\\mimica_api\\Mimica\\Mimica.csproj",
+        "packagesPath": "C:\\Users\\AuadRocha\\.nuget\\packages\\",
+        "outputPath": "C:\\apicompaginacao\\mimica_api\\Mimica\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AuadRocha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

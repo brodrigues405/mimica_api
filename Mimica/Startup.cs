@@ -27,6 +27,14 @@ namespace Mimica {
             services.AddDbContext<MimicaContext>(opt => {
                 opt.UseSqlite("Data Source=Database\\Mimic.db");
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
             services.AddMvc();
             services.AddScoped<IPalavraRepository, PalavraRepository>();
         }
@@ -36,7 +44,7 @@ namespace Mimica {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("CorsPolicy");
             app.UseStatusCodePages();
             app.UseMvc();
         }
