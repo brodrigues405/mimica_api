@@ -37,7 +37,7 @@ namespace Mimica.Repositories {
                 
             lista.paginacao = paginacao;
             }
-            lista.AddRange(item.ToList());
+            lista.Results.AddRange(item.ToList());
             return lista;
 
         }

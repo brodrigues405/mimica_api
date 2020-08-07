@@ -10,6 +10,7 @@ namespace Mimica.infra {
 
         public DTOMapperProfile() {
             CreateMap<Palavra, PalavraDTO>();
+            CreateMap<PaginationList<Palavra>, PaginationList<PalavraDTO>>();
         }
 
     }
