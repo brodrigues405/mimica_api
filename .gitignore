@@ -528,3 +528,11 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,csharp
+package-lock.json
+.vs/Mimica/v16/.suo
+Mimica/bin/Debug/netcoreapp2.2/Mimica.dll
+Mimica/bin/Debug/netcoreapp2.2/Mimica.pdb
+Mimica/obj/Debug/netcoreapp2.2/Mimica.csproj.CoreCompileInputs.cache
+Mimica/obj/Debug/netcoreapp2.2/Mimica.csprojAssemblyReference.cache
+Mimica/obj/Debug/netcoreapp2.2/Mimica.dll
+Mimica/obj/Debug/netcoreapp2.2/Mimica.pdb
