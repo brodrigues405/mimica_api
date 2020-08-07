@@ -39,7 +39,7 @@ namespace Mimica
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .WithExposedHeaders("X-Pagination")
+                    .WithExposedHeaders("X-Pagination", "X-Paging-PageNo", "X-Paging-PageSize", "X-Paging-PageCount", "X-Paging-TotalRecordCount")
                     );
             });
             services.AddMvc();
